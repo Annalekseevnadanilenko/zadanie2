@@ -88,6 +88,8 @@ testing_tbl = data_numeric[test,]#Тестирующая выборка
 
 model = lm(formula, data = data);model #создаем модель линейной регрессии
 
+formula = co2_flux ~ (rand_err_H + LE + rand_err_co2_flux + h2o_flux + co2_molar_density + co2_mole_fraction + co2_mixing_ratio + sonic_temperature + air_temperature + es + T. + un_LE + un_co2_flux + un_h2o_flux + ts_var + co2_var + w.co2_cov + w.h2o_cov + co2 + co2.1)
+
 coef(model)#коэффициенты
 
 resid(model)#остатки
@@ -102,14 +104,16 @@ plot(model)#графическое представление модели
 
 # МОДЕЛЬ 2
 
-mod = lm(formula, data = data);mod
+model2 = lm(formula2, data = data);model2 #создаем модель линейной регрессии
 
-formula1 = co2_flux ~  (rand_err_H + LE + rand_err_co2_flux + h2o_flux +co2_molar_density + co2_mole_fraction + co2_mixing_ratio + sonic_temperature + air_temperature + es + T. + un_LE + un_co2_flux + un_h2o_flux + ts_var + co2_var + w.co2_cov + w.h2o_cov +co2 + co2.1)
+formula2 = co2_flux ~ (rand_err_H +  rand_err_co2_flux + un_co2_flux + ts_var + co2_var)
 
-summary(mod)#Получим информацию о моделе и коэффициенты
+model2 = lm(formula2, data = data)
 
-anova(mod)#Проанализируем переменные по значимости
+anova(model2)#дисперсионный анализ
 
-anova(model, mod)#Сравним с предыдущей моделью, не ухудшилась ли она
+summary(model2)#P-значения по модели
 
-plot(mod) #Выведем графики
+anova(model2)#дисперсионный анализ
+
+plot(model2)#графическое представление модели
