@@ -1,18 +1,18 @@
 #Даниленко Анна создайте модель множественной линейной регрессии потоков дневных потоков углекислого газа за весенний период 2013 года по данным измерений методом турбулентной пульсации
 
-library("tidyverse")#
+library("tidyverse")#загружаем пакеты
 
-library("nycflights13") #
+library("nycflights13") #загружаем пакеты
 
-library("tidyr") #
+library("tidyr") #загружаем пакеты
 
-library("stringr") #
+library("stringr") #загружаем пакеты
 
-library("dplyr") #
+library("dplyr") #загружаем пакеты
 
-library("tibble") #
+library("tibble") #загружаем пакеты
 
-library("readr") #
+library("readr") #загружаем пакеты
 
 setwd("C:/Users/any11/Documents") 
 
@@ -104,9 +104,9 @@ plot(model)#графическое представление модели
 
 # МОДЕЛЬ 2
 
-model2 = lm(formula2, data = data);model2 #создаем модель линейной регрессии
-
 formula2 = co2_flux ~ (rand_err_H +  rand_err_co2_flux + un_co2_flux + ts_var + co2_var)
+
+model2 = lm(formula2, data = data);model2 #создаем модель линейной регрессии
 
 model2 = lm(formula2, data = data)
 
@@ -117,3 +117,39 @@ summary(model2)#P-значения по модели
 anova(model2)#дисперсионный анализ
 
 plot(model2)#графическое представление модели
+
+# МОДЕЛЬ 3
+
+formula3 = co2_flux ~ (rand_err_H +  rand_err_co2_flux + un_co2_flux + co2_var)
+
+model3 = lm(formula3, data = data);model3 #создаем модель линейной регрессии
+
+model3 = lm(formula3, data = data)
+
+anova(model3)#дисперсионный анализ
+
+summary(model3)#P-значения по модели
+
+anova(model3)#дисперсионный анализ
+
+summary(model3)
+
+plot(model3)#графическое представление модели
+
+# МОДЕЛЬ 4
+
+formula4 = co2_flux ~ (rand_err_co2_flux + un_co2_flux + co2_var)
+
+model4 = lm(formula4, data = data);model4 #создаем модель линейной регрессии
+
+model4 = lm(formula4, data = data)
+
+anova(model4)#дисперсионный анализ
+
+summary(model4)#P-значения по модели
+
+anova(model4)#дисперсионный анализ
+
+summary(model4)
+
+plot(model4)#графическое представление модели
